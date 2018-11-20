@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import {InvestmentDataService} from '../investment-data.service';
 
 @Component({
   selector: 'app-investment-table',
   templateUrl: './investment-table.component.html',
-  styleUrls: ['./investment-table.component.css']
+  styleUrls: ['./investment-table.component.css'],
+  providers: [InvestmentDataService]
 })
-export class InvestmentTableComponent implements OnInit {
+export class InvestmentTableComponent {
+  data: any[] =null;
 
-  constructor() { }
+  constructor(private investmentDataService: InvestmentDataService) { }
 
-  ngOnInit() {
+  getInvestmentData(date:string){
+    this.investmentDataService.getByDate(date).subscribe(response => {
+      this.data = response.json();
+    })
   }
-
 }
