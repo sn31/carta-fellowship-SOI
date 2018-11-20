@@ -1,3 +1,5 @@
+<form class="form-group"><input class="form-control" type="date" /></form>
+<hr />
 <table class="table table-striped">
   <thead>
     <tr>
@@ -9,12 +11,13 @@
     </tr>
   </thead>
   <tbody *ngFor="let investment of investments">
+    <th scope="row">{{ investment["name"] }}</th>
     <tr *ngFor="let asset of investment['issued_assets']">
-      <th scope="row">{{ investment["name"] }}</th>
+      <td></td>
       <td>{{ asset["asset_class"] }}</td>
       <td>{{ asset["investment_date"] }}</td>
       <td>{{ asset["quantity"] }}</td>
-      <td>{{ asset["cost"]["$"] }}</td>
+      <td>{{ asset["cost"]["$"] }}&nbsp;$</td>
     </tr>
   </tbody>
 </table>
