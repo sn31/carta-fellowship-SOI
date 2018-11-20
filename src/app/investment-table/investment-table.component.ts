@@ -9,13 +9,15 @@ import {InvestmentDataService} from '../investment-data.service';
   providers: [InvestmentDataService]
 })
 export class InvestmentTableComponent {
-  data: any[] =null;
-
-  constructor(private investmentDataService: InvestmentDataService) { }
+  investments: any[] =null;
+  constructor(private investmentDataService: InvestmentDataService) {
+    this.getInvestmentData("2018-11-14"); 
+   }
 
   getInvestmentData(date:string){
     this.investmentDataService.getByDate(date).subscribe(response => {
-      this.data = response.json();
+      this.investments = response.json();
+      console.log(this.investments);
     })
   }
 }

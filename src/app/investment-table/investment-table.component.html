@@ -8,13 +8,13 @@
       <th scope="col">Cost</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Stuff</td>
+  <tbody *ngFor="let investment of investments">
+    <tr *ngFor="let asset of investment['issued_assets']">
+      <th scope="row">{{ investment["name"] }}</th>
+      <td>{{ asset["asset_class"] }}</td>
+      <td>{{ asset["investment_date"] }}</td>
+      <td>{{ asset["quantity"] }}</td>
+      <td>{{ asset["cost"]["$"] }}</td>
     </tr>
   </tbody>
 </table>
