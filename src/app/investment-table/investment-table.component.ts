@@ -10,19 +10,17 @@ import {InvestmentDataService} from '../investment-data.service';
   providers: [InvestmentDataService]
 })
 export class InvestmentTableComponent {
-  investments: any[] =null;
+  investments: any[];
   investmentTotal: number = 0;
   accountTotal: number[] =[];
   constructor(private investmentDataService: InvestmentDataService) {
     this.getInvestmentData(this.date); //Show data on defaul date.
-    this.getAccountTotal()
    }
-
   getInvestmentData(date:string){
     this.investmentDataService.getByDate(date).subscribe(response => {
       this.investments = response.json();
       this.investments.map(investment=>
-        this.investmentTotal+= investment["cost"]["$"]
+        this.investmentTotal+= investment["cost"]["$"],
       )
     })
   }
@@ -35,11 +33,12 @@ export class InvestmentTableComponent {
       ),
       this.accountTotal.push(this.assetQuantity),
     )
-    console.log("this is called");
   }
+
   date: string = "2018-03-12";
   onChange(dateInput) {
     this.date = dateInput;
+    this.investmentTotal = 0;
     this.getInvestmentData(this.date);
     console.log("Reloading the table");
   }
