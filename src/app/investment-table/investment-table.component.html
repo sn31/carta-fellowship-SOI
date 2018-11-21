@@ -10,7 +10,17 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Investment</th>
+      <th scope="col">
+        Investment <img (click)="show = true" [className]=" (show === true)
+        ?'is-inactive':'is-active'" src="../../assets/images/expandlogo.png"
+        alt="expand arrow">
+        <img
+          (click)="show = false"
+          [className]="show === true ? 'is-active' : 'is-inactive'"
+          src="../../assets/images/collapselogo.png"
+          alt="expand arrow"
+        />
+      </th>
       <th scope="col">Asset</th>
       <th scope="col">Investment Date</th>
       <th scope="col">Shares</th>
@@ -19,9 +29,7 @@
     </tr>
   </thead>
   <tbody *ngFor="let investment of investments">
-    <th scope="row">{{ investment["name"] }}
-      <img (click)="show = !show" class="logo" src="../../assets/images/expandlogo.png" alt="expand arrow">
-    </th>
+    <th scope="row">{{ investment["name"] }}</th>
     <th></th>
     <th></th>
     <th>
@@ -40,9 +48,10 @@
     </th>
     <th class="lastCol">$</th>
 
-    <tr [className]="
-      (show === true) ?'is-active':'is-inactive'
-    " *ngFor="let asset of investment['issued_assets']">
+    <tr
+      [className]="show === true ? 'is-active' : 'is-inactive'"
+      *ngFor="let asset of investment['issued_assets']"
+    >
       <td></td>
       <td>{{ asset["asset_class"] }}</td>
       <td>{{ asset["investment_date"] }}</td>
