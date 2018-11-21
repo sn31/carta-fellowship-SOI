@@ -22,13 +22,15 @@
     <th scope="row">{{ investment["name"] }}</th>
     <th></th>
     <th></th>
-    <th>{{accountTotal[0]}</th>
+    <th>{{ (investment["quantity"] === null) ? "" : investment["quantity"].toLocaleString()}}</th>
+    <th>{{ (investment["cost"] === null) ? "" : investment["cost"]["$"].toLocaleString()}}</th>
+    <th class="lastCol">$</th>
     <tr *ngFor="let asset of investment['issued_assets']">
       <td></td>
       <td>{{ asset["asset_class"] }}</td>
       <td>{{ asset["investment_date"] }}</td>
-      <td>{{ asset["quantity"] }}</td>
-      <td class="lastCol" (ngModel) = "getAccountTotal(10)">{{ asset["cost"]["$"] }}</td>
+      <td>{{ (asset["quantity"] === null) ? "" : asset["quantity"].toLocaleString()}}</td>
+      <td class="costCol" (ngModel) = "getAccountTotal()">{{(asset["cost"]["$"] === null) ? "" : asset["cost"]["$"].toLocaleString() }}</td>
       <td class="lastCol">$</td>
     </tr>
   </tbody>
@@ -38,7 +40,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td class="lastCol">{{ investmentTotal }}</td>
+      <td class="costCol">{{ (investmentTotal === null) ? "" :investmentTotal.toLocaleString()}}</td>
       <td class="lastCol">$</td>
     </tr>
   </tbody>

@@ -12,7 +12,7 @@ import {InvestmentDataService} from '../investment-data.service';
 export class InvestmentTableComponent {
   investments: any[];
   investmentTotal: number = 0;
-  accountTotal: number[] =[];
+
   constructor(private investmentDataService: InvestmentDataService) {
     this.getInvestmentData(this.date); //Show data on defaul date.
    }
@@ -23,16 +23,6 @@ export class InvestmentTableComponent {
         this.investmentTotal+= investment["cost"]["$"],
       )
     })
-  }
-  assetQuantity: number =0;
-  getAccountTotal(){
-    console.log(this.investments);
-    this.investments.map(investment=>
-      investment.map(asset=>
-        this.assetQuantity += asset["quantity"]
-      ),
-      this.accountTotal.push(this.assetQuantity),
-    )
   }
 
   date: string = "2018-03-12";
