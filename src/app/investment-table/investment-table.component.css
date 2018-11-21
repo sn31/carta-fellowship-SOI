@@ -3,3 +3,13 @@ input {
     margin-left: auto;
     margin-right: auto;
 }
+
+.table {
+    text-align:justify;
+}
+
+.lastCol {
+    text-align: left;
+    padding-left: 0;
+    width: 10px;
+}

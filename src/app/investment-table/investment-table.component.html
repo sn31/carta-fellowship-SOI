@@ -1,5 +1,12 @@
 <form class="form-group">
-    <label><strong>Select a date to pull data from</strong></label><input class="form-control" type="date" (change)="onChange($event.target.value)" value="2018-03-12"/></form>
+  <label><strong>Select a date to pull data from</strong></label
+  ><input
+    class="form-control"
+    type="date"
+    (change)="onChange($event.target.value)"
+    value="2018-03-12"
+  />
+</form>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -8,16 +15,32 @@
       <th scope="col">Investment Date</th>
       <th scope="col">Shares</th>
       <th scope="col">Cost</th>
+      <th></th>
     </tr>
   </thead>
   <tbody *ngFor="let investment of investments">
     <th scope="row">{{ investment["name"] }}</th>
+    <th></th>
+    <th></th>
+    <th>{{accountTotal[0]}</th>
     <tr *ngFor="let asset of investment['issued_assets']">
       <td></td>
       <td>{{ asset["asset_class"] }}</td>
       <td>{{ asset["investment_date"] }}</td>
       <td>{{ asset["quantity"] }}</td>
-      <td>{{ asset["cost"]["$"] }}&nbsp;$</td>
+      <td class="lastCol" (ngModel) = "getAccountTotal(10)">{{ asset["cost"]["$"] }}</td>
+      <td class="lastCol">$</td>
     </tr>
   </tbody>
+    <tbody>
+    <tr>
+      <th>Total</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="lastCol">{{ investmentTotal }}</td>
+      <td class="lastCol">$</td>
+    </tr>
+  </tbody>
+ 
 </table>
