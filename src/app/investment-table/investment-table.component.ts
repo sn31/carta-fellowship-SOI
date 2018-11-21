@@ -11,7 +11,7 @@ import {InvestmentDataService} from '../investment-data.service';
 export class InvestmentTableComponent {
   investments: any[] =null;
   constructor(private investmentDataService: InvestmentDataService) {
-    this.getInvestmentData("2018-11-14"); 
+    this.getInvestmentData(this.date); //Show data on defaul date.
    }
 
   getInvestmentData(date:string){
@@ -19,5 +19,12 @@ export class InvestmentTableComponent {
       this.investments = response.json();
       console.log(this.investments);
     })
+  }
+
+  date: string = "2018-11-01";
+  onChange(dateInput) {
+    this.date = dateInput;
+    this.getInvestmentData(this.date);
+    console.log("Reloading the table");
   }
 }
