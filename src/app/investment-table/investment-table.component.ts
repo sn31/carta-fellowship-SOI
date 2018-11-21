@@ -21,7 +21,7 @@ export class InvestmentTableComponent {
     })
   }
 
-  date: string = "2018-11-01";
+  date: string = "2018-03-12";
   onChange(dateInput) {
     this.date = dateInput;
     this.getInvestmentData(this.date);
