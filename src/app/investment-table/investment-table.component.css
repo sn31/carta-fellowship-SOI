@@ -3,7 +3,6 @@ input {
     margin-left: auto;
     margin-right: auto;
 }
-
 .table {
     text-align:justify;
 }
@@ -19,4 +18,12 @@ input {
 }
 th {
     text-align: left;
+    
+}
+.logo {
+    width: 10%;
+}
+
+.is-inactive {
+    display:none;
 }

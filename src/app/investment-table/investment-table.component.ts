@@ -12,7 +12,7 @@ import {InvestmentDataService} from '../investment-data.service';
 export class InvestmentTableComponent {
   investments: any[];
   investmentTotal: number = 0;
-
+  show: boolean = false;
   constructor(private investmentDataService: InvestmentDataService) {
     this.getInvestmentData(this.date); //Show data on defaul date.
    }

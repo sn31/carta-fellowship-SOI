@@ -19,30 +19,56 @@
     </tr>
   </thead>
   <tbody *ngFor="let investment of investments">
-    <th scope="row">{{ investment["name"] }}</th>
+    <th scope="row">{{ investment["name"] }}
+      <img (click)="show = !show" class="logo" src="../../assets/images/expandlogo.png" alt="expand arrow">
+    </th>
     <th></th>
     <th></th>
-    <th>{{ (investment["quantity"] === null) ? "" : investment["quantity"].toLocaleString()}}</th>
-    <th>{{ (investment["cost"] === null) ? "" : investment["cost"]["$"].toLocaleString()}}</th>
+    <th>
+      {{
+        investment["quantity"] === null
+          ? ""
+          : investment["quantity"].toLocaleString()
+      }}
+    </th>
+    <th>
+      {{
+        investment["cost"] === null
+          ? ""
+          : investment["cost"]["$"].toLocaleString()
+      }}
+    </th>
     <th class="lastCol">$</th>
-    <tr *ngFor="let asset of investment['issued_assets']">
+
+    <tr [className]="
+      (show === true) ?'is-active':'is-inactive'
+    " *ngFor="let asset of investment['issued_assets']">
       <td></td>
       <td>{{ asset["asset_class"] }}</td>
       <td>{{ asset["investment_date"] }}</td>
-      <td>{{ (asset["quantity"] === null) ? "" : asset["quantity"].toLocaleString()}}</td>
-      <td class="costCol" (ngModel) = "getAccountTotal()">{{(asset["cost"]["$"] === null) ? "" : asset["cost"]["$"].toLocaleString() }}</td>
+      <td>
+        {{
+          asset["quantity"] === null ? "" : asset["quantity"].toLocaleString()
+        }}
+      </td>
+      <td class="costCol" (ngModel)="getAccountTotal()">
+        {{
+          asset["cost"]["$"] === null ? "" : asset["cost"]["$"].toLocaleString()
+        }}
+      </td>
       <td class="lastCol">$</td>
     </tr>
   </tbody>
-    <tbody>
+  <tbody>
     <tr>
       <th>Total</th>
       <td></td>
       <td></td>
       <td></td>
-      <td class="costCol">{{ (investmentTotal === null) ? "" :investmentTotal.toLocaleString()}}</td>
+      <td class="costCol">
+        {{ investmentTotal === null ? "" : investmentTotal.toLocaleString() }}
+      </td>
       <td class="lastCol">$</td>
     </tr>
   </tbody>
- 
 </table>
