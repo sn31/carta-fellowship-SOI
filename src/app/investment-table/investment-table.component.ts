@@ -39,9 +39,12 @@ export class InvestmentTableComponent {
     this.getInvestmentData(this.date);
   }
   openDetails(investmentName: string) {
+    if (this.show != true)
+    {
     this.showInvestmentDict[investmentName] = !this.showInvestmentDict[
       investmentName
     ];
+  }
   }
 
   resetShowInvestmentDict() {
