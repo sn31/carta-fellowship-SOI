@@ -15,8 +15,8 @@
         ?'is-inactive':'is-active'" src="../../assets/images/expandlogo.png"
         alt="expand arrow">
         <img
-          (click)="show = false"
-          [className]="show === true ? 'is-active' : 'is-inactive'"
+          (click)="resetShowInvestmentDict()"
+          [className]="show === true ? '' : 'is-inactive'"
           src="../../assets/images/collapselogo.png"
           alt="expand arrow"
         />
@@ -49,23 +49,23 @@
     <th class="lastCol">$</th>
 
     <tr
-      [className]="show === true ? 'is-active' : 'is-inactive'"
+     
       *ngFor="let asset of investment['issued_assets']"
     >
-      <td></td>
-      <td>{{ asset["asset_class"] }}</td>
-      <td>{{ asset["investment_date"] }}</td>
-      <td>
+    <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'"></td>
+      <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'">{{ asset["asset_class"] }}</td>
+      <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'">{{ asset["investment_date"] }}</td>
+      <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'">
         {{
           asset["quantity"] === null ? "" : asset["quantity"].toLocaleString()
         }}
       </td>
-      <td class="costCol" (ngModel)="getAccountTotal()">
+      <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'" class="costCol" (ngModel)="getAccountTotal()">
         {{
           asset["cost"]["$"] === null ? "" : asset["cost"]["$"].toLocaleString()
         }}
       </td>
-      <td class="lastCol">$</td>
+      <td [className]="(show === true) || (show === false && showInvestmentDict[investment['name']] === true)?'':'is-inactive'"  class="lastCol">$</td>
     </tr>
   </tbody>
   <tbody>
