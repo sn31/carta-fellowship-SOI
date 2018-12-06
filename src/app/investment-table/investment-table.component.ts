@@ -36,9 +36,9 @@ export class InvestmentTableComponent {
     this.getInvestmentData(this.date);
     console.log("Reloading the table");
   }
-  openDetails() {
+  openDetails(investmentName : string) {
     console.log(this.showInvestmentDict);
-    // this.showInvestment = !this.showInvestment;
-    // console.log(this.showInvestment);
+    this.showInvestmentDict[investmentName] = !this.showInvestmentDict[investmentName];
+    console.log(this.showInvestmentDict);
   }
 }
